@@ -10,4 +10,9 @@ public class KataTest {
         assertEquals("dlrow", Kata.solution("world"));
     }
 
+    @Test
+    public void sampleTests2() {
+        assertEquals("dlrow", Kata.solutionBetter("world"));
+    }
+
 }
