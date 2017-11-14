@@ -3,13 +3,13 @@ package kata.SomeFunWithAggregageOpspart1to4;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
 public class AggregationKataTest {
+
+
     private Student[] students;
 
     @Before
@@ -39,4 +39,39 @@ public class AggregationKataTest {
 
     }
 
+    @Test
+    public void getNumberOfStudentsByDepartment2() throws Exception {
+        Map<String, Long> actual = AggregationKata.getNumberOfStudentsByDepartment2(Arrays.stream(students));
+        Map<String, Long> expected = new HashMap<>();
+        expected.put("CS", 2l);
+        expected.put("Philology", 3l);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void basicTestGetNumberOfStudentsByDepartment() throws Exception {
+
+        Map<String, Long> actual = AggregationKata.getNumberOfStudentsByDepartment2(Arrays.stream(students));
+        Map<String, Long> expected = new HashMap<>();
+        expected.put("CS", 2l);
+        expected.put("Philology", 3l);
+
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
+    public void basicTestGetStudentNamesByDepartment() throws Exception {
+
+        Map<String, List<String>> actual = AggregationKata.getStudentNamesByDepartment3(Arrays.stream(students));
+        List<String> list1 = new ArrayList<>(Arrays.asList("Galina", "Jack", "Mike"));
+        List<String> list2 = new ArrayList<>(Arrays.asList("Anton", "Jane"));
+        Map<String, List<String>> expected = new HashMap<>();
+        expected.put("Philology", list1);
+        expected.put("CS", list2);
+
+        assertEquals(expected, actual);
+
+    }
 }
