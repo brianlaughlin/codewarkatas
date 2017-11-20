@@ -13,7 +13,7 @@ public class Utility {
         return Stream.iterate(new int[]{1, 1},
                 array -> new int[]{array[1], array[0] + array[1]})
                 .mapToInt(array -> array[0]);
-        
+
 
     }
 
