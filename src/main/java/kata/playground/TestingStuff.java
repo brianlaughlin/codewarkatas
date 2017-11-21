@@ -50,8 +50,18 @@ public class TestingStuff {
                     .min()
                     .getAsInt();
         }
+    }
+
+    static int words(String s){
+
+        String[] words = s.split(" ");
+        int shortest = 1000;
+        for(String word: words){
+            if(word.length() < shortest) shortest = word.length();
+        }
 
 
+        return shortest;
     }
 
 }
