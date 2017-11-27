@@ -64,4 +64,22 @@ public class TestingStuff {
         return shortest;
     }
 
+    static String printerError(String s){
+
+        s = s.toLowerCase();
+        String bad = "[nopqrstuvwxyz]";
+        int orgLength = s.length();
+        int hasBad = 0;
+        int hasGood = 0;
+
+         hasGood = s.toLowerCase()
+                .replaceAll(bad, "")
+                .length();
+
+        hasBad = orgLength - hasGood;
+        String result = hasBad + "/" + orgLength;
+
+        return result;
+    }
+
 }
