@@ -1,6 +1,7 @@
 package kata.playground;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -32,39 +33,39 @@ public class TestingStuff {
 
     }
 
-    static int find(int[] integers){
+    static int find(int[] integers) {
 
         int evenCount = 0;
         evenCount = (int) IntStream.of(integers)
-                .filter(e->e % 2 == 0)
+                .filter(e -> e % 2 == 0)
                 .count();
 
         if (evenCount == 1) {
             return IntStream.of(integers)
-                    .filter(e-> e % 2 ==0)
+                    .filter(e -> e % 2 == 0)
                     .min()
                     .getAsInt();
         } else {
             return IntStream.of(integers)
-                    .filter(e-> e % 2 ==1)
+                    .filter(e -> e % 2 == 1)
                     .min()
                     .getAsInt();
         }
     }
 
-    static int words(String s){
+    static int words(String s) {
 
         String[] words = s.split(" ");
         int shortest = 1000;
-        for(String word: words){
-            if(word.length() < shortest) shortest = word.length();
+        for (String word : words) {
+            if (word.length() < shortest) shortest = word.length();
         }
 
 
         return shortest;
     }
 
-    static String printerError(String s){
+    static String printerError(String s) {
 
         s = s.toLowerCase();
         String bad = "[nopqrstuvwxyz]";
@@ -72,7 +73,7 @@ public class TestingStuff {
         int hasBad = 0;
         int hasGood = 0;
 
-         hasGood = s.toLowerCase()
+        hasGood = s.toLowerCase()
                 .replaceAll(bad, "")
                 .length();
 
@@ -80,6 +81,49 @@ public class TestingStuff {
         String result = hasBad + "/" + orgLength;
 
         return result;
+    }
+
+    public static int summation(int n) {
+        int result = 1;
+        result = result + IntStream.range(0, n).sum();
+        return result;
+    }
+
+    public static Integer basicMath(String op, int v1, int v2) {
+        Integer result = 0;
+        switch (op) {
+            case "+":
+                result = v1 + v2;
+                break;
+            case "-":
+                result = v1 - v2;
+                break;
+            case "*":
+                result = v1 * v2;
+                break;
+            case "/":
+                result = v1 / v2;
+                break;
+        }
+
+        return result;
+    }
+
+    public int min(int[] list) {
+        return IntStream.of(list).min().getAsInt();
+
+    }
+
+    public int max(int[] list) {
+        return  IntStream.of(list).max().getAsInt();
+    }
+
+    public void deleteThis(){
+        List<Integer> list = new ArrayList<>();
+        // Old school
+        for (Integer i : list)
+            for (int j = 0; j < i; j++)
+                System.out.println(i * j);
     }
 
 }
