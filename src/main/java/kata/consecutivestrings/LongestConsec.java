@@ -3,6 +3,10 @@ package kata.consecutivestrings;
 import org.apache.commons.collections.list.SetUniqueList;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.joining;
 
 
 // Coding Challenge: https://www.codewars.com/kata/consecutive-strings/train/java
@@ -15,15 +19,34 @@ public class LongestConsec {
 
         String longestStr = "";
         for (int index = 0; index < strarr.length - k + 1; index++) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = index; i < index + k; i++) {
-                sb.append(strarr[i]);
+            StringBuilder result = new StringBuilder();
+            int bound = index + k;
+            for (int i = index; i < bound; i++) {
+                String s = strarr[i];
+                result.append(s);
             }
-            if (sb.toString().length() > longestStr.length()) {
-                longestStr = sb.toString();
-            }
+            String sb = result.toString();
+            if (sb.length() > longestStr.length()) longestStr = sb;
         }
         return longestStr;
+    }
+
+    public static String longestConsecStream(String[] strArr, int k) {
+        return (k > 0 && strArr.length > 0 && k <= strArr.length) ?
+                IntStream.rangeClosed(0, strArr.length - k)
+                        .mapToObj(i -> IntStream.range(0, k).mapToObj(j -> strArr[i + j]).collect(Collectors.joining()))
+                        .sorted((s1, s2) -> Integer.compare(s2.length(), s1.length()))
+                        .findFirst().get()
+                : "";
+    }
+
+    public static String longestConsecStream2(String[] strarr, int k) {
+        String maxStr = "";
+        for (int i=0; i<=strarr.length-k; i++) {
+            String current = IntStream.range(i, i+k).mapToObj(j -> strarr[j]).collect(Collectors.joining());
+            if (current.length() > maxStr.length()) maxStr = current;
+        }
+        return maxStr;
     }
 
 
