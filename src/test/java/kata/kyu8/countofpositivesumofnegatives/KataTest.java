@@ -17,4 +17,10 @@ public class KataTest {
         assertArrayEquals(expectedResult, Kata.countPositivesSumNegatives(new int[] {0, 2, 3, 0, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14}));
     }
 
+    @Test
+    public void countPositivesSumNegatives_InputNull() {
+        int[] expectedResult = new int[] {};
+        assertArrayEquals(expectedResult, Kata.countPositivesSumNegatives(new int[] {0, 0}));
+    }
+
 }
