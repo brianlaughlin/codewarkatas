@@ -1,6 +1,7 @@
 package kata.playground;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -11,25 +12,10 @@ using this as a playground and testing syntax
 public class TestingStuff {
 
 
-//    public static String areYouPlayingBanjo(String name) {
-//        if (String.valueOf(name.charAt(0)).toUpperCase().equals("R")) {
-//            return name + " " + "plays banjo"
-//        } else return name + " " + "does not plays banjo";
-//    }
+    public static List<String> sort(List<String> textbooks) {
 
-    public int GetSum(int a, int b) {
-        if (a == b) return a;
-        if (a < b) {
-            return Stream.iterate(a, e -> e + 1)
-                    .mapToInt(e -> e)
-                    .limit(b)
-                    .sum();
-        } else {
-            return Stream.iterate(b, e -> e + 1)
-                    .mapToInt(e -> e)
-                    .limit(a)
-                    .sum();
-        }
+        textbooks.sort(String::compareToIgnoreCase);
+        return textbooks;
 
     }
 
@@ -53,16 +39,13 @@ public class TestingStuff {
         }
     }
 
-    static int words(String s) {
+    public static String bmi(double weight, double height) {
+        double bmiValue = weight / Math.pow(height, 2);
 
-        String[] words = s.split(" ");
-        int shortest = 1000;
-        for (String word : words) {
-            if (word.length() < shortest) shortest = word.length();
-        }
-
-
-        return shortest;
+        if (bmiValue <= 18.5) return "Underweight";
+        if (bmiValue <= 25.0) return "Normal";
+        if (bmiValue <= 30.0) return "Overweight";
+        return "Obese";
     }
 
     static String printerError(String s) {
@@ -83,11 +66,14 @@ public class TestingStuff {
         return result;
     }
 
-    public static int summation(int n) {
-        int result = 1;
-        result = result + IntStream.range(0, n).sum();
-        return result;
+
+    public static int saleHotdogs(final int n){
+        return (n < 5) ? 100 : (n > 5 && n < 10) ? 95 : 90;
+
     }
+
+
+
 
     public static Integer basicMath(String op, int v1, int v2) {
         Integer result = 0;

@@ -2,7 +2,6 @@ package kata.playground;
 
 import org.junit.Test;
 
-import static kata.playground.TestingStuff.summation;
 import static org.junit.Assert.*;
 
 public class TestingStuffTest {
@@ -19,9 +18,5 @@ public class TestingStuffTest {
 
     }
 
-    @Test
-    public void test(){
-        assertEquals(1, summation(1));
-    }
 
 }
