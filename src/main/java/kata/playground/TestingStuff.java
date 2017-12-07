@@ -67,12 +67,12 @@ public class TestingStuff {
     }
 
 
-    public static int saleHotdogs(final int n){
-        return (n < 5) ? 100 : (n > 5 && n < 10) ? 95 : 90;
+    public static int[] invert(int[] array) {
 
+        IntStream.range(0, array.length).forEachOrdered(i -> array[i] = array[i] * -1);
+
+        return array;
     }
-
-
 
 
     public static Integer basicMath(String op, int v1, int v2) {
