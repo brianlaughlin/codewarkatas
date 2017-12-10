@@ -22,17 +22,11 @@ public class TestingStuff {
 
     }
 
-    public static void getInput(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter code : ");
-        String url = scanner.next();
+    public String dnaToRna(String dna){
+        String rna = dna.replace("T", "U");
 
-        scanner.close();
-
-        System.out.println("You entered : " + url);
+        return rna;
     }
-
-
 
     public static String bmi(double weight, double height) {
         double bmiValue = weight / Math.pow(height, 2);

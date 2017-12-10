@@ -16,8 +16,4 @@ public class TestingStuffTest {
         TestingStuff.webBrowser();
     }
 
-    @Test
-    public void getInputTest() {
-        TestingStuff.getInput();
-    }
 }
