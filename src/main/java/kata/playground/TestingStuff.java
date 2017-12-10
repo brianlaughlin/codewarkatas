@@ -1,8 +1,12 @@
 package kata.playground;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -11,32 +15,18 @@ using this as a playground and testing syntax
  */
 public class TestingStuff {
 
+    public static void webBrowser() throws URISyntaxException, IOException {
 
-    public static List<String> sort(List<String> textbooks) {
-
-        textbooks.sort(String::compareToIgnoreCase);
-        return textbooks;
+        if (Desktop.isDesktopSupported()) {
+            Desktop.getDesktop().browse(new URI("http://www.google.com"));
+        }
 
     }
 
-    static int find(int[] integers) {
+    public String dnaToRna(String dna){
+        String rna = dna.replace("T", "U");
 
-        int evenCount = 0;
-        evenCount = (int) IntStream.of(integers)
-                .filter(e -> e % 2 == 0)
-                .count();
-
-        if (evenCount == 1) {
-            return IntStream.of(integers)
-                    .filter(e -> e % 2 == 0)
-                    .min()
-                    .getAsInt();
-        } else {
-            return IntStream.of(integers)
-                    .filter(e -> e % 2 == 1)
-                    .min()
-                    .getAsInt();
-        }
+        return rna;
     }
 
     public static String bmi(double weight, double height) {
@@ -48,63 +38,24 @@ public class TestingStuff {
         return "Obese";
     }
 
-    static String printerError(String s) {
-
-        s = s.toLowerCase();
-        String bad = "[nopqrstuvwxyz]";
-        int orgLength = s.length();
-        int hasBad = 0;
-        int hasGood = 0;
-
-        hasGood = s.toLowerCase()
-                .replaceAll(bad, "")
-                .length();
-
-        hasBad = orgLength - hasGood;
-        String result = hasBad + "/" + orgLength;
-
-        return result;
+    public static boolean isPlural(float f){
+        return (f >= 2.0) ? true : (f < 0) ? true : false;
     }
 
+    public static String[] kataExampleTwist()
+    {
+        ArrayList<String> sites = new ArrayList<>();
+        Stream.generate(() -> sites.add("codewards")).limit(1000);
 
-    public static int[] invert(int[] array) {
-
-        IntStream.range(0, array.length).forEachOrdered(i -> array[i] = array[i] * -1);
-
-        return array;
-    }
-
-
-    public static Integer basicMath(String op, int v1, int v2) {
-        Integer result = 0;
-        switch (op) {
-            case "+":
-                result = v1 + v2;
-                break;
-            case "-":
-                result = v1 - v2;
-                break;
-            case "*":
-                result = v1 * v2;
-                break;
-            case "/":
-                result = v1 / v2;
-                break;
-        }
-
-        return result;
-    }
-
-    public int min(int[] list) {
-        return IntStream.of(list).min().getAsInt();
-
+        String[] websites = sites.stream().toArray(String[]::new);
+        return websites;
     }
 
     public int max(int[] list) {
-        return  IntStream.of(list).max().getAsInt();
+        return IntStream.of(list).max().getAsInt();
     }
 
-    public void deleteThis(){
+    public void deleteThis() {
         List<Integer> list = new ArrayList<>();
         // Old school
         for (Integer i : list)
