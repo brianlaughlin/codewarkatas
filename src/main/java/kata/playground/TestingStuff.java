@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /*
 using this as a playground and testing syntax
@@ -41,24 +42,13 @@ public class TestingStuff {
         return (f >= 2.0) ? true : (f < 0) ? true : false;
     }
 
-    public static Integer basicMath(String op, int v1, int v2) {
-        Integer result = 0;
-        switch (op) {
-            case "+":
-                result = v1 + v2;
-                break;
-            case "-":
-                result = v1 - v2;
-                break;
-            case "*":
-                result = v1 * v2;
-                break;
-            case "/":
-                result = v1 / v2;
-                break;
-        }
+    public static String[] kataExampleTwist()
+    {
+        ArrayList<String> sites = new ArrayList<>();
+        Stream.generate(() -> sites.add("codewards")).limit(1000);
 
-        return result;
+        String[] websites = sites.stream().toArray(String[]::new);
+        return websites;
     }
 
     public int max(int[] list) {
