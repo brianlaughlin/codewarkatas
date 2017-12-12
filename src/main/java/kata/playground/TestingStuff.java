@@ -5,9 +5,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.stream.Stream;
 
 /*
@@ -51,16 +50,28 @@ public class TestingStuff {
         return websites;
     }
 
-    public int max(int[] list) {
-        return IntStream.of(list).max().getAsInt();
+    public static void sortingStringArray(){
+
+        String[] array1 = new String[]{"77","321", "555", "3", "-77", "1","2"};
+        int[] arrayInt1 = new int[]{77, 321, 555, 3, -77, 1, 2};
+
+        System.out.println("Orginal Array " + Arrays.toString(array1));
+
+        Arrays.sort(arrayInt1);
+        System.out.println("Int Array sorted " + Arrays.toString(arrayInt1));
+
     }
 
-    public void deleteThis() {
-        List<Integer> list = new ArrayList<>();
-        // Old school
-        for (Integer i : list)
-            for (int j = 0; j < i; j++)
-                System.out.println(i * j);
-    }
+
 
 }
+/*
+
+        Arrays.sort(split, new Comparator<String>() {
+            public int compare(String a, String b) {
+                int aWeight = a.chars().map(c -> Character.getNumericValue(c)).sum();
+                int bWeight = b.chars().map(c -> Character.getNumericValue(c)).sum();
+                return aWeight - bWeight != 0 ? aWeight - bWeight : a.compareTo(b);
+            }
+
+ */

@@ -10,13 +10,7 @@ import java.util.stream.Collectors;
 public class Working {
     public static String orderWeightBest(String string) {
         String[] split = string.split(" ");
-        Arrays.sort(split, new Comparator<String>() {
-            public int compare(String a, String b) {
-                int aWeight = a.chars().map(c -> Character.getNumericValue(c)).sum();
-                int bWeight = b.chars().map(c -> Character.getNumericValue(c)).sum();
-                return aWeight - bWeight != 0 ? aWeight - bWeight : a.compareTo(b);
-            }
-        });
+        Arrays.sort(split, Working::compare);
         return String.join(" ", split);
     }
 
@@ -31,6 +25,8 @@ public class Working {
 
     }
 
+    // subtracting 48 from a char value converts it into an Int.
+    // '2' - 48 (0) == 2 int.
     private static Integer sumDigits(String s) {
         return s.chars().map(c -> c - 48).sum();
     }
@@ -38,8 +34,8 @@ public class Working {
     // #3
     public static String orderWeightStream2(String strng) {
         return Arrays.stream(strng.split(" ")).sorted((String n1, String n2) -> {
-            int w1 = Arrays.stream(n1.split("")).mapToInt(d -> Integer.parseInt(d)).sum();
-            int w2 = Arrays.stream(n2.split("")).mapToInt(d -> Integer.parseInt(d)).sum();
+            int w1 = Arrays.stream(n1.split("")).mapToInt(Integer::parseInt).sum();
+            int w2 = Arrays.stream(n2.split("")).mapToInt(Integer::parseInt).sum();
             if (w1 < w2) {
                 return -1;
             } else if (w1 == w2) {
@@ -83,5 +79,11 @@ public class Working {
             }
         });
         return String.join(" ", parts);
+    }
+
+    private static int compare(String a, String b) {
+        int aWeight = a.chars().map(Character::getNumericValue).sum();
+        int bWeight = b.chars().map(Character::getNumericValue).sum();
+        return aWeight - bWeight != 0 ? aWeight - bWeight : a.compareTo(b);
     }
 }

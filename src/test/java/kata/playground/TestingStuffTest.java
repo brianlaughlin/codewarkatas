@@ -16,4 +16,9 @@ public class TestingStuffTest {
         TestingStuff.webBrowser();
     }
 
+    @Test
+    public void sortingStringArray() {
+
+        TestingStuff.sortingStringArray();
+    }
 }
