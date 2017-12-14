@@ -1,18 +1,27 @@
 package kata.findthemissingletter;
 
 public class Kata {
-    public static char findMissingLetterMain(char[] array)
-    {
-        return ' ';
-    }
-
-    public static char findMissingLetter(char[] array)
-    {
+    public static char findMissingLetter(char[] array) {
         char missingValue = 0;
         char charInQueue = array[0];
-        for (int i = 0; i < array.length; i++){
+        for (int i = 0; i < array.length; i++) {
+            if (charInQueue != array[i]) {
+                missingValue = charInQueue;
+                return missingValue;
+            } else charInQueue += 1;
+        }
+        return missingValue;
+    }
 
-            missingValue = array[i];
+
+    public static char findMissingLetterXX(char[] array) {
+        char missingValue = 0;
+        char charInQueue = array[0];
+        for (int i = 0; i < array.length; i++) {
+            if (charInQueue != array[i]) {
+                missingValue = array[i];
+                return missingValue;
+            }
         }
         return missingValue;
     }
