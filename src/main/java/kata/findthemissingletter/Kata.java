@@ -7,7 +7,7 @@ public class Kata {
         for (char anArray : array) {
             if (charInQueue != anArray) {
                 return charInQueue;
-            } else charInQueue += 1;
+            } else charInQueue++;
         }
         return 0;
     }
