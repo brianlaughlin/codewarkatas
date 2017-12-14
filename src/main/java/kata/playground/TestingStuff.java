@@ -50,28 +50,23 @@ public class TestingStuff {
         return websites;
     }
 
-    public static void sortingStringArray(){
 
-        String[] array1 = new String[]{"77","321", "555", "3", "-77", "1","2"};
-        int[] arrayInt1 = new int[]{77, 321, 555, 3, -77, 1, 2};
 
-        System.out.println("Orginal Array " + Arrays.toString(array1));
+    public static String caffeineBuzz(int n){
 
-        Arrays.sort(arrayInt1);
-        System.out.println("Int Array sorted " + Arrays.toString(arrayInt1));
+        StringBuilder result = new StringBuilder();
+        if(n % 3 == 0 && n % 4 == 0) result.append("Coffee");
+        else if(n % 3 == 0 ) result.append("Java");
+        else if(n % 2 == 0) result.append("Script").append("mocha_missing!");
+
+        return result.toString();
+
+    }
+
+    public void multiplication(){
 
     }
 
 
 
 }
-/*
-
-        Arrays.sort(split, new Comparator<String>() {
-            public int compare(String a, String b) {
-                int aWeight = a.chars().map(c -> Character.getNumericValue(c)).sum();
-                int bWeight = b.chars().map(c -> Character.getNumericValue(c)).sum();
-                return aWeight - bWeight != 0 ? aWeight - bWeight : a.compareTo(b);
-            }
-
- */

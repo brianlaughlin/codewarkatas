@@ -2,23 +2,25 @@ package kata.playground;
 
 import org.junit.Test;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class TestingStuffTest {
 
     public TestingStuff t = new TestingStuff();
 
+
     @Test
-    public void webBrowserTest() throws IOException, URISyntaxException {
-        TestingStuff.webBrowser();
+    public void multiplication() {
+        Dollar five = new Dollar(5);
+        assertEquals(new Dollar(10), five.times(2));
+        assertEquals(new Dollar(15), five.times(3));
     }
 
     @Test
-    public void sortingStringArray() {
-
-        TestingStuff.sortingStringArray();
+    public void testEquality(){
+        assertTrue(new Dollar(5).equals(new Dollar(5)));
+        assertFalse(new Dollar(5).equals(new Dollar(6)));
     }
 }
