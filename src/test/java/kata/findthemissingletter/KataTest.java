@@ -13,20 +13,20 @@ public class KataTest {
 
     @Test
     public void Test1(){
-        assertEquals(65, Kata.findMissingLetter(new char[] {'A'}));
-        assertEquals(66, Kata.findMissingLetter(new char[] {'B'}));
+        assertEquals('A', Kata.findMissingLetter(new char[] {'A'}));
+        assertEquals('B', Kata.findMissingLetter(new char[] {'B'}));
     }
 
     @Test
     public void loopArrayReturnLast(){
-        assertEquals(65, Kata.findMissingLetter(new char[] {'C', 'B', 'A'}));
+        assertEquals('A', Kata.findMissingLetter(new char[] {'C', 'B', 'A'}));
     }
 
 }
 
 /*
-Read String and turn to char
-incremnt char with counter
+Read String and turn to char (done)
+loop through array (done)
 if counter != char return letter
 
 Try first using TDD Method I'll check in at each stage so I can see progression

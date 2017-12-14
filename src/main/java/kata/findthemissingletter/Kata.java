@@ -6,10 +6,10 @@ public class Kata {
         return ' ';
     }
 
-    public static int findMissingLetter(char[] array)
+    public static char findMissingLetter(char[] array)
     {
-        int missingValue = 0;
-        
+        char missingValue = 0;
+        char charInQueue = array[0];
         for (int i = 0; i < array.length; i++){
 
             missingValue = array[i];
