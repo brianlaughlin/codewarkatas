@@ -4,8 +4,8 @@ public class Kata {
     public static char findMissingLetter(char[] array) {
         char missingValue = 0;
         char charInQueue = array[0];
-        for (int i = 0; i < array.length; i++) {
-            if (charInQueue != array[i]) {
+        for (char anArray : array) {
+            if (charInQueue != anArray) {
                 missingValue = charInQueue;
                 return missingValue;
             } else charInQueue += 1;
