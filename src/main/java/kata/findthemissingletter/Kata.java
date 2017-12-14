@@ -1,5 +1,7 @@
 package kata.findthemissingletter;
 
+import java.util.stream.IntStream;
+
 public class Kata {
     public static char findMissingLetter(char[] array) {
 
@@ -12,4 +14,9 @@ public class Kata {
         return 0;
     }
 
+    public static char findMissingLetterStream(char[] array)
+    {
+        int index = IntStream.range(0, array.length-1).filter(i -> array[i] != array[i+1]-1).findFirst().getAsInt();
+        return (char)(array[index] + 1);
+    }
 }
