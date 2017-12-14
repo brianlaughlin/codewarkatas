@@ -6,8 +6,7 @@ public class Kata {
         char charInQueue = array[0];
         for (char anArray : array) {
             if (charInQueue != anArray) {
-                missingValue = charInQueue;
-                return missingValue;
+                return charInQueue;
             } else charInQueue += 1;
         }
         return missingValue;
