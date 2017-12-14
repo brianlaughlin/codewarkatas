@@ -8,7 +8,11 @@ public class Kata {
 
     public static int findMissingLetter(char[] array)
     {
-        int charValue = array[0];
+        int charValue = 0;
+        for (int i = 0; i < array.length; i++){
+
+            charValue = array[i];
+        }
         return charValue;
     }
 }

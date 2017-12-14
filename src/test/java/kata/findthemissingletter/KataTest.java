@@ -17,6 +17,11 @@ public class KataTest {
         assertEquals(66, Kata.findMissingLetter(new char[] {'B'}));
     }
 
+    @Test
+    public void loopArrayReturnLast(){
+        assertEquals(65, Kata.findMissingLetter(new char[] {'C', 'B', 'A'}));
+    }
+
 }
 
 /*
