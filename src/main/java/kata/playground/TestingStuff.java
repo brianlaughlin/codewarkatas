@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /*
@@ -14,15 +14,19 @@ using this as a playground and testing syntax
  */
 public class TestingStuff {
 
-    public static void webBrowser() throws URISyntaxException, IOException {
+    public static ArrayList<Integer> getInput(){
 
-        if (Desktop.isDesktopSupported()) {
-            Desktop.getDesktop().browse(new URI("http://www.google.com"));
-        }
+        ArrayList<Integer> ofNumbers = IntStream.range(0, 10)
+                .boxed()
+                .collect(Collectors
+                .toCollection(ArrayList::new));
 
+        return ofNumbers;
     }
 
-    public String dnaToRna(String dna){
+
+
+    public String dnaToRna(String dna) {
         String rna = dna.replace("T", "U");
 
         return rna;
@@ -37,12 +41,11 @@ public class TestingStuff {
         return "Obese";
     }
 
-    public static boolean isPlural(float f){
+    public static boolean isPlural(float f) {
         return (f >= 2.0) ? true : (f < 0) ? true : false;
     }
 
-    public static String[] kataExampleTwist()
-    {
+    public static String[] kataExampleTwist() {
         ArrayList<String> sites = new ArrayList<>();
         Stream.generate(() -> sites.add("codewards")).limit(1000);
 
@@ -51,16 +54,11 @@ public class TestingStuff {
     }
 
 
+    public static int cockroachSpeed(double x) {
+        if (x == 0.0) return 0;
+        double result =  x * 100000 / 3600;
 
-    public static String caffeineBuzz(int n){
-
-        StringBuilder result = new StringBuilder();
-        if(n % 3 == 0 && n % 4 == 0) result.append("Coffee");
-        else if(n % 3 == 0 ) result.append("Java");
-        else if(n % 2 == 0) result.append("Script").append("mocha_missing!");
-
-        return result.toString();
-
+        return (int) result;
     }
 
 }

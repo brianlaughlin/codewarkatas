@@ -23,4 +23,11 @@ public class TestingStuffTest {
         assertTrue(new Dollar(5).equals(new Dollar(5)));
         assertFalse(new Dollar(5).equals(new Dollar(6)));
     }
+
+    @Test
+    public void cockroachSpeedTest() {
+        //  assertEquals(30, cockroach.cockroachSpeed(1.08));
+//    assertEquals(30, cockroach.cockroachSpeed(1.09));
+        assertEquals(30, TestingStuff.cockroachSpeed(1.08));
+    }
 }
