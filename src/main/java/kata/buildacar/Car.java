@@ -1,5 +1,8 @@
 package kata.buildacar;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class Car {
     static Body body;
     static Chassis chassis;
@@ -36,14 +39,14 @@ public class Car {
         result += "-";
         for(int i=1; i < bottomLength; i++){
             if(i == 1) result += "o";
-            else if(i == 4) result += "o";
+            else if(i == bottomLength - 3) result += "o";
             else if(i == bottomLength - 1) {
                 result +="'";
                 break;
             }
             else result += "-";
         }
-        
+
         return result;
     }
 

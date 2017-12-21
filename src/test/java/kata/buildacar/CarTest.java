@@ -73,13 +73,13 @@ public class CarTest {
 
     @Test
     public void showBottom(){
-        assertEquals("-o--o-'", Car.showBottom(7));
+        assertEquals("-o---o-'", Car.showBottom(8));
     }
 
     @Test
     public void drawCar(){
 
-        int length = 7;
+        int length = 9;
 
         System.out.println(Car.showTop(length));
         System.out.println(Car.showMiddle(length));
