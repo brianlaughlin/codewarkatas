@@ -35,19 +35,25 @@ public class Car {
     }
 
     public static String showBottom(int bottomLength) {
-        String result = "";
-        result += "-";
-        for(int i=1; i < bottomLength; i++){
-            if(i == 1) result += "o";
-            else if(i == bottomLength - 3) result += "o";
-            else if(i == bottomLength - 1) {
-                result +="'";
-                break;
-            }
-            else result += "-";
+        StringBuilder result = new StringBuilder();
+       // result += "-";
+
+        // Better to do the following:
+        // Build bottom --------- completely
+        // replace with tires -o------o-
+        // Will reduce looping and tracking
+
+        for(int j = 0; j < bottomLength - 1; j++){
+            result.append("-");
+        }
+            result.append("'");
+
+        if(bottomLength < 12){
+            result.setCharAt(1, 'o');
+            result.setCharAt(bottomLength -3, 'o');
         }
 
-        return result;
+        return result.toString();
     }
 
     public class Body {
