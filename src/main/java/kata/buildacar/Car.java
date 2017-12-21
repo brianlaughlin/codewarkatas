@@ -1,6 +1,5 @@
 package kata.buildacar;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class Car {
@@ -10,13 +9,13 @@ public class Car {
     public Car(int length, int doors) {
         body = new Body("Hello");
         chassis = new Chassis();
-        chassis.component=" world";
+        chassis.component = " world";
 
     }
 
     public static String showTop(int topLength) {
         String result = " ";
-        for(int i=1; i < topLength - 2; i++) result += "_";
+        for (int i = 1; i < topLength - 2; i++) result += "_";
 
         return result;
     }
@@ -25,7 +24,7 @@ public class Car {
 
         String result = "";
         result += "|";
-        for(int i=1; i< midLength-4; i++){
+        for (int i = 1; i < midLength - 4; i++) {
             result += " ";
         }
 
@@ -36,21 +35,21 @@ public class Car {
 
     public static String showBottom(int bottomLength) {
         StringBuilder result = new StringBuilder();
-       // result += "-";
+        // result += "-";
 
         // Better to do the following:
         // Build bottom --------- completely
         // replace with tires -o------o-
         // Will reduce looping and tracking
 
-        for(int j = 0; j < bottomLength - 1; j++){
-            result.append("-");
-        }
-            result.append("'");
+        IntStream.range(0, bottomLength - 1)
+                .mapToObj(j -> "-")
+                .forEach(result::append);
+        result.append("'");
 
-        if(bottomLength < 12){
+        if (bottomLength < 12) {
             result.setCharAt(1, 'o');
-            result.setCharAt(bottomLength -3, 'o');
+            result.setCharAt(bottomLength - 3, 'o');
         }
 
         return result.toString();
