@@ -31,9 +31,20 @@ public class Car {
         return result;
     }
 
-    public static String showBottom(int i) {
-
-        return "-o--o-'";
+    public static String showBottom(int bottomLength) {
+        String result = "";
+        result += "-";
+        for(int i=1; i < bottomLength; i++){
+            if(i == 1) result += "o";
+            else if(i == 4) result += "o";
+            else if(i == bottomLength - 1) {
+                result +="'";
+                break;
+            }
+            else result += "-";
+        }
+        
+        return result;
     }
 
     public class Body {

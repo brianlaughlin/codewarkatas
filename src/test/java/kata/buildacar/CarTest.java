@@ -78,8 +78,11 @@ public class CarTest {
 
     @Test
     public void drawCar(){
-        System.out.println(Car.showTop(7));
-        System.out.println(Car.showMiddle(7));
-        System.out.println(Car.showBottom(7));
+
+        int length = 7;
+
+        System.out.println(Car.showTop(length));
+        System.out.println(Car.showMiddle(length));
+        System.out.println(Car.showBottom(length));
     }
 }
