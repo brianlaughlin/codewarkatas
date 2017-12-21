@@ -24,10 +24,13 @@ public class TestingStuffTest {
         assertFalse(new Dollar(5).equals(new Dollar(6)));
     }
 
+
     @Test
-    public void cockroachSpeedTest() {
-        //  assertEquals(30, cockroach.cockroachSpeed(1.08));
-//    assertEquals(30, cockroach.cockroachSpeed(1.09));
-        assertEquals(30, TestingStuff.cockroachSpeed(1.08));
+    public void oddOrEvenTest() {
+        TestingStuff t = new TestingStuff();
+
+        t.oddOrEven();
+
+
     }
 }

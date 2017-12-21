@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -54,11 +55,21 @@ public class TestingStuff {
     }
 
 
-    public static int cockroachSpeed(double x) {
-        if (x == 0.0) return 0;
-        double result =  x * 100000 / 3600;
+    public String oddOrEven(){
 
-        return (int) result;
+        int[] array = new int[] {2, 5, 34, 6};
+
+//        if(array.length == 0) return
+        int sum = 0;
+        sum = IntStream.rangeClosed(0, array.length)
+                .sum();
+
+        sum = 0;
+        sum = Arrays.stream(array).sum();
+
+        if(sum % 2 == 0) return "even";
+        else return "odd";
+
     }
 
 }
