@@ -88,10 +88,10 @@ public class CarTest {
 
     @Test
     public void numAlestest(){
-//        assertEquals(2, Car.numAxles(7));
-//        assertEquals(3, Car.numAxles(12));
-        assertEquals(4, Car.numAxles(14));
-        assertEquals(4, Car.numAxles(15));
-        assertEquals(5, Car.numAxles(16));
+        assertEquals(2, Car.getNumAxles(7));
+        assertEquals(3, Car.getNumAxles(12));
+        assertEquals(4, Car.getNumAxles(14));
+        assertEquals(4, Car.getNumAxles(15));
+        assertEquals(5, Car.getNumAxles(16));
     }
 }

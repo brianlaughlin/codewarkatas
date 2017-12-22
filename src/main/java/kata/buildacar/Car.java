@@ -14,7 +14,7 @@ public class Car {
     }
 
 
-    public static int numAxles(int length){
+    public static int getNumAxles(int length){
         int axles = 0;
         if(length < 12) return 2;
         else if (length == 12) return 3;
@@ -59,6 +59,8 @@ public class Car {
                 .mapToObj(j -> "-")
                 .forEach(result::append);
         result.append("'");
+
+//        int axles =
 
         if (bottomLength < 12) {
             result.setCharAt(1, 'o');
