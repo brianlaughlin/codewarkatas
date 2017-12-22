@@ -32,13 +32,13 @@ public class CarTest {
     public void testNoDoorException() throws Exception {
         Car car = new Car(7, 0);
     };
-//
-//    // test too-many-doors-exception
-//    @Test (expected = java.lang.Exception.class)
-//    public void testManyDoorsException() throws Exception {
-//        Car car = new Car(7, 4);
-//    };
-//
+
+    // test too-many-doors-exception
+    @Test (expected = java.lang.Exception.class)
+    public void testManyDoorsException() throws Exception {
+        Car car = new Car(7, 4);
+    };
+
     // test small car
     @Test
     public void testSmallCar() {
@@ -92,10 +92,10 @@ public class CarTest {
     @Test
     public void drawCar() {
 
-        int length = 16;
+        int length = 11;
 
         System.out.println(Car.showTop(length));
-        System.out.println(Car.showMiddle(length, 1));
+        System.out.println(Car.showMiddle(length, 4));
         System.out.println(Car.showBottom(length));
     }
 

@@ -13,6 +13,8 @@ public class Car {
         Car.length = length;
 
         if (doors == 0) throw new Exception();
+        if (length < 7) throw new Exception();
+        if (length - (doors * 2) < 3) throw new Exception();
 
         body = new Body(length, doors);
         chassis = new Chassis(length);
