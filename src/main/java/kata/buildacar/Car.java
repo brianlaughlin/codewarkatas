@@ -37,10 +37,9 @@ public class Car {
 
         StringBuilder result = new StringBuilder();
         result.append("|");
-        for (int i = 1; i < midLength - 4; i++) {
-            result.append(" ");
-        }
-
+        IntStream.range(1, midLength - 4)
+                .mapToObj(j -> " ")
+                .forEach(result::append);
         result.append("[]\\");
 
         return result.toString();
@@ -65,7 +64,7 @@ public class Car {
         int left = 1;
         int right = 3;
         for (int i = 1; i < axles + 1; i++) {
-            if (i  % 2 == 1) {
+            if (i % 2 == 1) {
                 result.setCharAt(left, 'o');
                 left += 2;
             } else {
