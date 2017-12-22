@@ -9,14 +9,14 @@ public class Car {
     public Car(int length, int doors) {
         body = new Body("Hello");
         chassis = new Chassis("7");
-     //   chassis.component = " world";
+        //   chassis.component = " world";
 
     }
 
 
-    public static int getNumAxles(int length){
+    public static int getNumAxles(int length) {
         int axles = 0;
-        if(length < 12) return 2;
+        if (length < 12) return 2;
         else if (length == 12) return 3;
         else {
             axles = ((length - 12) / 2) + 1 + 2;
@@ -62,34 +62,17 @@ public class Car {
 
         int axles = getNumAxles(bottomLength);
 
-        if (axles == 2) {
-            result.setCharAt(1, 'o');
-            result.setCharAt(bottomLength - 3, 'o');
+        int left = 1;
+        int right = 3;
+        for (int i = 1; i < axles + 1; i++) {
+            if (i  % 2 == 1) {
+                result.setCharAt(left, 'o');
+                left += 2;
+            } else {
+                result.setCharAt(bottomLength - right, 'o');
+                right += 2;
+            }
         }
-
-        if (axles == 3){
-            result.setCharAt(1, 'o');
-            result.setCharAt(3, 'o');
-            result.setCharAt(bottomLength - 3, 'o');
-        }
-
-        if (axles == 4){
-            result.setCharAt(1, 'o');
-            result.setCharAt(3, 'o');
-            result.setCharAt(bottomLength - 5, 'o');
-            result.setCharAt(bottomLength - 3, 'o');
-        }
-
-        if (axles == 5){
-            result.setCharAt(1, 'o');
-            result.setCharAt(3, 'o');
-            result.setCharAt(5, 'o');
-            result.setCharAt(bottomLength - 5, 'o');
-            result.setCharAt(bottomLength - 3, 'o');
-        }
-
-
-
 
         return result.toString();
     }
