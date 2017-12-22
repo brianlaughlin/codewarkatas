@@ -42,13 +42,13 @@ public class CarTest {
     @Test
     public void testSmallCar() { testCar(7, 1, " ____\n|  []\\\n-o--o-'"); }
 
-//    // test medium car
-//    @Test
-//    public void testMediumCar() { testCar(12, 2, " _________\n|[]     []\\\n-o-o-----o-'"); }
-//
-//    // test large car
-//    @Test
-//    public void testLargeCar() { testCar(17, 5, " ______________\n|[][]    [][][]\\\n-o-o-o------o-o-'"); }
+    // test medium car
+    @Test
+    public void testMediumCar() { testCar(12, 2, " _________\n|[]     []\\\n-o-o-----o-'"); }
+
+    // test large car
+    @Test
+    public void testLargeCar() { testCar(17, 5, " ______________\n|[][]    [][][]\\\n-o-o-o------o-o-'"); }
 
     // helper method
     private void testCar(int length, int doors, String test) {
@@ -84,7 +84,7 @@ public class CarTest {
         int length =14;
 
         System.out.println(Car.showTop(length));
-        System.out.println(Car.showMiddle(length, 1));
+        System.out.println(Car.showMiddle(length, 3));
         System.out.println(Car.showBottom(length));
     }
 

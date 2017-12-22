@@ -5,12 +5,14 @@ import java.util.stream.IntStream;
 public class Car {
     static Body body;
     static Chassis chassis;
+    static int doors = 0;
+    static int length = 0;
 
     public Car(int length, int doors) {
-        body = new Body("Hello");
-        chassis = new Chassis("7");
-        //   chassis.component = " world";
-
+        this.doors = doors;
+        this.length = length;
+        body = new Body(length,doors);
+        chassis = new Chassis(length);
     }
 
 
@@ -87,16 +89,16 @@ public class Car {
     public class Body {
         public String component;
 
-        public Body(String component) {
-            this.component = Car.showTop(7) + "\n" + Car.showMiddle(7, 1);
+        public Body(int length, int doors) {
+            this.component = Car.showTop(length) + "\n" + Car.showMiddle(length, doors);
         }
     }
 
     public class Chassis {
         public String component;
 
-        public Chassis(String component) {
-            this.component = "\n" + Car.showBottom(7);
+        public Chassis(int length) {
+            this.component = "\n" + Car.showBottom(length);
 
         }
     }
