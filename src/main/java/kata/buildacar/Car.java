@@ -8,10 +8,13 @@ public class Car {
     static int doors = 0;
     static int length = 0;
 
-    public Car(int length, int doors) {
-        this.doors = doors;
-        this.length = length;
-        body = new Body(length,doors);
+    public Car(int length, int doors) throws Exception {
+        Car.doors = doors;
+        Car.length = length;
+
+        if (doors == 0) throw new Exception();
+
+        body = new Body(length, doors);
         chassis = new Chassis(length);
     }
 
@@ -51,7 +54,7 @@ public class Car {
                 result.setCharAt(midLength - right, '[');
                 result.setCharAt(midLength - right + 1, ']');
                 right += 2;
-            } else{
+            } else {
                 result.setCharAt(left, '[');
                 result.setCharAt(left + 1, ']');
                 left += 2;

@@ -19,18 +19,19 @@ public class CarTest {
         Car car = new Car(7, 1);
         assertNotNull("'Car.chassis.component' is not defined", car.chassis.component);
     }
-//
-//    // test length-exception
-//    @Test (expected = java.lang.Exception.class)
-//    public void testLengthException() throws Exception {
-//        Car car = new Car(6, 1);
-//    };
-//
-//    // test no-door-exceptions
-//    @Test (expected = java.lang.Exception.class)
-//    public void testNoDoorException() throws Exception {
-//        Car car = new Car(7, 0);
-//    };
+
+    // test length-exception
+    @Test(expected = java.lang.Exception.class)
+    public void testLengthException() throws Exception {
+        Car car = new Car(6, 1);
+    };
+
+
+    // test no-door-exceptions
+    @Test (expected = java.lang.Exception.class)
+    public void testNoDoorException() throws Exception {
+        Car car = new Car(7, 0);
+    };
 //
 //    // test too-many-doors-exception
 //    @Test (expected = java.lang.Exception.class)
@@ -40,22 +41,32 @@ public class CarTest {
 //
     // test small car
     @Test
-    public void testSmallCar() { testCar(7, 1, " ____\n|  []\\\n-o--o-'"); }
+    public void testSmallCar() {
+        testCar(7, 1, " ____\n|  []\\\n-o--o-'");
+    }
 
     // test medium car
     @Test
-    public void testMediumCar() { testCar(12, 2, " _________\n|[]     []\\\n-o-o-----o-'"); }
+    public void testMediumCar() {
+        testCar(12, 2, " _________\n|[]     []\\\n-o-o-----o-'");
+    }
 
     // test large car
     @Test
-    public void testLargeCar() { testCar(17, 5, " ______________\n|[][]    [][][]\\\n-o-o-o------o-o-'"); }
+    public void testLargeCar() {
+        testCar(17, 5, " ______________\n|[][]    [][][]\\\n-o-o-o------o-o-'");
+    }
 
     // helper method
     private void testCar(int length, int doors, String test) {
         Car car;
         String value, output;
-        try { car = new Car(length, doors); }
-        catch (Exception e) { System.out.println("Unexpected Exception!" + e); return; }
+        try {
+            car = new Car(length, doors);
+        } catch (Exception e) {
+            System.out.println("Unexpected Exception!" + e);
+            return;
+        }
         value = car.body.component + car.chassis.component;
         output = "\nExpected car:\n" + test + "\nYour car:\n" + value + "\n\n";
         assertEquals(output, value, test); // test
@@ -63,33 +74,33 @@ public class CarTest {
     }
 
     @Test
-    public void showTopCar(){
+    public void showTopCar() {
         assertEquals(" _____", Car.showTop(8));
     }
 
     @Test
-    public void showMiddleCar(){
+    public void showMiddleCar() {
         assertEquals("|   []\\", Car.showMiddle(8, 1));
         assertEquals("|[] []\\", Car.showMiddle(8, 2));
     }
 
     @Test
-    public void showBottom(){
+    public void showBottom() {
         assertEquals("-o---o-'", Car.showBottom(8));
     }
 
     @Test
-    public void drawCar(){
+    public void drawCar() {
 
-        int length =14;
+        int length = 16;
 
         System.out.println(Car.showTop(length));
-        System.out.println(Car.showMiddle(length, 3));
+        System.out.println(Car.showMiddle(length, 1));
         System.out.println(Car.showBottom(length));
     }
 
     @Test
-    public void numAlestest(){
+    public void numAlestest() {
         assertEquals(2, Car.getNumAxles(7));
         assertEquals(3, Car.getNumAxles(12));
         assertEquals(4, Car.getNumAxles(14));
