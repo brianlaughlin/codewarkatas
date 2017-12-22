@@ -35,15 +35,15 @@ public class Car {
 
     public static String showMiddle(int midLength) {
 
-        String result = "";
-        result += "|";
+        StringBuilder result = new StringBuilder();
+        result.append("|");
         for (int i = 1; i < midLength - 4; i++) {
-            result += " ";
+            result.append(" ");
         }
 
-        result += "[]\\";
+        result.append("[]\\");
 
-        return result;
+        return result.toString();
     }
 
     public static String showBottom(int bottomLength) {
