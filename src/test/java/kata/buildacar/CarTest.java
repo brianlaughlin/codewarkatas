@@ -2,7 +2,8 @@ package kata.buildacar;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class CarTest {
     // test body.component
@@ -68,7 +69,8 @@ public class CarTest {
 
     @Test
     public void showMiddleCar(){
-        assertEquals("|   []\\", Car.showMiddle(8));
+        assertEquals("|   []\\", Car.showMiddle(8, 1));
+        assertEquals("|[] []\\", Car.showMiddle(8, 2));
     }
 
     @Test
@@ -82,7 +84,7 @@ public class CarTest {
         int length =14;
 
         System.out.println(Car.showTop(length));
-        System.out.println(Car.showMiddle(length));
+        System.out.println(Car.showMiddle(length, 1));
         System.out.println(Car.showBottom(length));
     }
 

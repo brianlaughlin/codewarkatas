@@ -33,26 +33,34 @@ public class Car {
         return result;
     }
 
-    public static String showMiddle(int midLength) {
+    public static String showMiddle(int midLength, int doors) {
 
         StringBuilder result = new StringBuilder();
         result.append("|");
         IntStream.range(1, midLength - 4)
                 .mapToObj(j -> " ")
                 .forEach(result::append);
-        result.append("[]\\");
+        result.append("  \\");
+
+        int left = 1; // even left door
+        int right = 4; // odd right door
+        for (int i = 1; i < doors + 1; i++) {
+            if (i % 2 == 1) {
+                result.setCharAt(midLength - right, '[');
+                result.setCharAt(midLength - right + 1, ']');
+                right += 2;
+            } else{
+                result.setCharAt(left, '[');
+                result.setCharAt(left + 1, ']');
+                left += 2;
+            }
+        }
 
         return result.toString();
     }
 
     public static String showBottom(int bottomLength) {
         StringBuilder result = new StringBuilder();
-        // result += "-";
-
-        // Better to do the following:
-        // Build bottom --------- completely
-        // replace with tires -o------o-
-        // Will reduce looping and tracking
 
         IntStream.range(0, bottomLength - 1)
                 .mapToObj(j -> "-")
@@ -80,7 +88,7 @@ public class Car {
         public String component;
 
         public Body(String component) {
-            this.component = Car.showTop(7) + "\n" + Car.showMiddle(7);
+            this.component = Car.showTop(7) + "\n" + Car.showMiddle(7, 1);
         }
     }
 
