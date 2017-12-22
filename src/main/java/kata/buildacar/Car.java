@@ -60,27 +60,27 @@ public class Car {
                 .forEach(result::append);
         result.append("'");
 
-//        int axles =
+        int axles = getNumAxles(bottomLength);
 
-        if (bottomLength < 12) {
+        if (axles == 2) {
             result.setCharAt(1, 'o');
             result.setCharAt(bottomLength - 3, 'o');
         }
 
-        if (bottomLength == 12){
+        if (axles == 3){
             result.setCharAt(1, 'o');
             result.setCharAt(3, 'o');
             result.setCharAt(bottomLength - 3, 'o');
         }
 
-        if (bottomLength == 14){
+        if (axles == 4){
             result.setCharAt(1, 'o');
             result.setCharAt(3, 'o');
             result.setCharAt(bottomLength - 5, 'o');
             result.setCharAt(bottomLength - 3, 'o');
         }
 
-        if (bottomLength == 16){
+        if (axles == 5){
             result.setCharAt(1, 'o');
             result.setCharAt(3, 'o');
             result.setCharAt(5, 'o');
