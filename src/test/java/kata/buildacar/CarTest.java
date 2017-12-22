@@ -85,4 +85,13 @@ public class CarTest {
         System.out.println(Car.showMiddle(length));
         System.out.println(Car.showBottom(length));
     }
+
+    @Test
+    public void numAlestest(){
+//        assertEquals(2, Car.numAxles(7));
+//        assertEquals(3, Car.numAxles(12));
+        assertEquals(4, Car.numAxles(14));
+        assertEquals(4, Car.numAxles(15));
+        assertEquals(5, Car.numAxles(16));
+    }
 }

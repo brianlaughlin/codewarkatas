@@ -13,6 +13,19 @@ public class Car {
 
     }
 
+
+    public static int numAxles(int length){
+        int axles = 0;
+        if(length < 12) return 2;
+        else if (length == 12) return 3;
+        else {
+            axles = ((length - 12) / 2) + 1 + 2;
+        }
+
+        return axles;
+
+    }
+
     public static String showTop(int topLength) {
         String result = " ";
         for (int i = 1; i < topLength - 2; i++) result += "_";
@@ -51,6 +64,8 @@ public class Car {
             result.setCharAt(1, 'o');
             result.setCharAt(bottomLength - 3, 'o');
         }
+
+
 
         return result.toString();
     }
