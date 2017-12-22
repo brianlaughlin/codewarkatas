@@ -5,12 +5,8 @@ import java.util.stream.IntStream;
 public class Car {
     static Body body;
     static Chassis chassis;
-    static int doors = 0;
-    static int length = 0;
 
     public Car(int length, int doors) throws Exception {
-        Car.doors = doors;
-        Car.length = length;
 
         if (doors == 0) throw new Exception();
         if (length < 7) throw new Exception();
@@ -22,7 +18,7 @@ public class Car {
 
 
     public static int getNumAxles(int length) {
-        int axles = 0;
+        int axles;
         if (length < 12) return 2;
         else if (length == 12) return 3;
         else {
@@ -34,10 +30,10 @@ public class Car {
     }
 
     public static String showTop(int topLength) {
-        String result = " ";
-        for (int i = 1; i < topLength - 2; i++) result += "_";
+        StringBuilder result = new StringBuilder(" ");
+        for (int i = 1; i < topLength - 2; i++) result.append("_");
 
-        return result;
+        return result.toString();
     }
 
     public static String showMiddle(int midLength, int doors) {
