@@ -65,6 +65,28 @@ public class Car {
             result.setCharAt(bottomLength - 3, 'o');
         }
 
+        if (bottomLength == 12){
+            result.setCharAt(1, 'o');
+            result.setCharAt(3, 'o');
+            result.setCharAt(bottomLength - 3, 'o');
+        }
+
+        if (bottomLength == 14){
+            result.setCharAt(1, 'o');
+            result.setCharAt(3, 'o');
+            result.setCharAt(bottomLength - 5, 'o');
+            result.setCharAt(bottomLength - 3, 'o');
+        }
+
+        if (bottomLength == 16){
+            result.setCharAt(1, 'o');
+            result.setCharAt(3, 'o');
+            result.setCharAt(5, 'o');
+            result.setCharAt(bottomLength - 5, 'o');
+            result.setCharAt(bottomLength - 3, 'o');
+        }
+
+
 
 
         return result.toString();
