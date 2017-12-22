@@ -37,10 +37,10 @@ public class CarTest {
 //        Car car = new Car(7, 4);
 //    };
 //
-//    // test small car
-//    @Test
-//    public void testSmallCar() { testCar(7, 1, " ____\n|  []\\\n-o--o-'"); }
-//
+    // test small car
+    @Test
+    public void testSmallCar() { testCar(7, 1, " ____\n|  []\\\n-o--o-'"); }
+
 //    // test medium car
 //    @Test
 //    public void testMediumCar() { testCar(12, 2, " _________\n|[]     []\\\n-o-o-----o-'"); }
@@ -49,17 +49,17 @@ public class CarTest {
 //    @Test
 //    public void testLargeCar() { testCar(17, 5, " ______________\n|[][]    [][][]\\\n-o-o-o------o-o-'"); }
 
-//    // helper method
-//    private void testCar(int length, int doors, String test) {
-//        Car car;
-//        String value, output;
-//        try { car = new Car(length, doors); }
-//        catch (Exception e) { System.out.println("Unexpected Exception!" + e); return; }
-//        value = car.body.component + car.chassis.component;
-//        output = "\nExpected car:\n" + test + "\nYour car:\n" + value + "\n\n";
-//        assertEquals(output, value, test); // test
-//        System.out.println(output);
-//    }
+    // helper method
+    private void testCar(int length, int doors, String test) {
+        Car car;
+        String value, output;
+        try { car = new Car(length, doors); }
+        catch (Exception e) { System.out.println("Unexpected Exception!" + e); return; }
+        value = car.body.component + car.chassis.component;
+        output = "\nExpected car:\n" + test + "\nYour car:\n" + value + "\n\n";
+        assertEquals(output, value, test); // test
+        System.out.println(output);
+    }
 
     @Test
     public void showTopCar(){

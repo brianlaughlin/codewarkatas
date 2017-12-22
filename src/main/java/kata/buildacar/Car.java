@@ -8,8 +8,8 @@ public class Car {
 
     public Car(int length, int doors) {
         body = new Body("Hello");
-        chassis = new Chassis();
-        chassis.component = " world";
+        chassis = new Chassis("7");
+     //   chassis.component = " world";
 
     }
 
@@ -96,11 +96,16 @@ public class Car {
         public String component;
 
         public Body(String component) {
-            this.component = component;
+            this.component = Car.showTop(7) + "\n" + Car.showMiddle(7);
         }
     }
 
     public class Chassis {
         public String component;
+
+        public Chassis(String component) {
+            this.component = "\n" + Car.showBottom(7);
+
+        }
     }
 }
