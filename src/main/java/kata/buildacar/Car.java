@@ -88,17 +88,17 @@ public class Car {
     }
 
     public class Body {
-        public String component;
+        public final String component;
 
-        public Body(int length, int doors) {
+        Body(int length, int doors) {
             this.component = Car.showTop(length) + "\n" + Car.showMiddle(length, doors);
         }
     }
 
     public class Chassis {
-        public String component;
+        public final String component;
 
-        public Chassis(int length) {
+        Chassis(int length) {
             this.component = "\n" + Car.showBottom(length);
 
         }
