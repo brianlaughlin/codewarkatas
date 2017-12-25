@@ -1,9 +1,5 @@
 package kata.playground;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -25,6 +21,19 @@ public class TestingStuff {
         return ofNumbers;
     }
 
+    public static String repeatString(final Object toRepeat, final int n) {
+
+        if(toRepeat instanceof String){
+
+            String result = "";
+            for(int i = 0; i < n; i++){
+                result += toRepeat;
+
+            }
+            return result;
+        }
+            return "Not a string";
+    }
 
 
     public String dnaToRna(String dna) {
