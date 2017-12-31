@@ -58,6 +58,7 @@ public class DinglemouseTest {
     @Test
     public void testConvertToDigits(){
         assertEquals("927", Dinglemouse.convertToDigitis("WAR"));
+        assertEquals("2633", Dinglemouse.convertToDigitis("CODE"));
 
     }
 

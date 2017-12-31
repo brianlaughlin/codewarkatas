@@ -6,10 +6,46 @@ import java.util.stream.IntStream;
 public class Dinglemouse {
     public static Set<String> check1800(final String str) {
 
-        HashSet<String> phoneNumbers = new HashSet<>();
-        phoneNumbers.add("1-800-CODE-WAR");
+        List<String> mixedWordsThree;
+        List<String> mixedWordsFour;
+        List<String> approvedThree = new ArrayList<>();
+        List<String> approvedFour = new ArrayList<>();
 
-        return phoneNumbers;
+        Set<String> result = new HashSet<>();
+        String threeLetters = "";
+        String fourLetters = "";
+        String threeDigits = "";
+        String fourDigits = "";
+
+        for(int i = 6; i < 10; i++) fourLetters += str.charAt(i);
+        for(int j = 11; j < str.length(); j++) threeLetters += str.charAt(j);
+
+        threeDigits = convertToDigitis(threeLetters);
+        fourDigits = convertToDigitis(fourLetters);
+
+        mixedWordsThree = letterCombinations(threeDigits);
+
+        mixedWordsFour = (letterCombinations(fourDigits));
+
+        for(String word: mixedWordsFour){
+            for(String approvedWords: PRELOADEDWORDS()){
+                if(approvedWords.equals(word)) approvedFour.add("1-800-" + approvedWords);
+            }
+        }
+
+        for(String word: mixedWordsThree){
+            for(String approvedWords: PRELOADEDWORDS()){
+                if(approvedWords.equals(word)) approvedThree.add("-"+ approvedWords);
+            }
+        }
+
+        for(String wordFour: approvedFour){
+            for(String wordThree: approvedThree){
+                result.add(wordFour + wordThree);
+            }
+        }
+
+        return result;
     }
 
     public static Set<String> checkNumber(int n){
@@ -53,7 +89,7 @@ public class Dinglemouse {
 
     public static void helper(List<String> result, StringBuilder sb, String digits, int index, HashMap<Character, char[]> map){
         if(index>=digits.length()){
-            result.add(sb.toString());
+            result.add(sb.toString().toUpperCase());
             return;
         }
 
