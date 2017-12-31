@@ -55,4 +55,10 @@ public class DinglemouseTest {
 
     }
 
+    @Test
+    public void testConvertToDigits(){
+        assertEquals("927", Dinglemouse.convertToDigitis("WAR"));
+
+    }
+
 }

@@ -68,6 +68,45 @@ public class Dinglemouse {
         });
     }
 
+    public static String convertToDigitis(String words){
+        Map<Character, Integer> letterToNumberMap = new HashMap<>();
+
+        letterToNumberMap.put('A', 2);
+        letterToNumberMap.put('B', 2);
+        letterToNumberMap.put('C', 2);
+        letterToNumberMap.put('D', 3);
+        letterToNumberMap.put('E', 3);
+        letterToNumberMap.put('F', 3);
+        letterToNumberMap.put('G', 4);
+        letterToNumberMap.put('H', 4);
+        letterToNumberMap.put('I', 4);
+        letterToNumberMap.put('J', 5);
+        letterToNumberMap.put('K', 5);
+        letterToNumberMap.put('L', 5);
+        letterToNumberMap.put('M', 6);
+        letterToNumberMap.put('N', 6);
+        letterToNumberMap.put('O', 6);
+        letterToNumberMap.put('P', 7);
+        letterToNumberMap.put('Q', 7);
+        letterToNumberMap.put('R', 7);
+        letterToNumberMap.put('S', 7);
+        letterToNumberMap.put('T', 8);
+        letterToNumberMap.put('U', 8);
+        letterToNumberMap.put('V', 8);
+        letterToNumberMap.put('W', 9);
+        letterToNumberMap.put('X', 9);
+        letterToNumberMap.put('Y', 9);
+        letterToNumberMap.put('Z', 9);
+
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 0; i < words.length(); i++){
+            result.append(letterToNumberMap.get(words.charAt(i)));
+        }
+
+        return result.toString();
+    }
+
 
     public static String[] PRELOADEDWORDS(){
 
