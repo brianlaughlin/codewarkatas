@@ -1,9 +1,35 @@
 package kata.oneeighthundredcodewar;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Dinglemouse {
+    public static Set<String> check1800No2(final String str){
+        // New implementation
+        Set<String> phoneFirstPart = new HashSet<>();
+        Set<String> phoneSecondPart = new HashSet<>();
+        List<String> allCombos = letterCombinations(lettersOnly(str));
+
+        // 1st Part of Phone Number
+        IntStream.rangeClosed(0, 1)
+                .forEachOrdered(i -> { allCombos.stream()
+                        .map(s -> s.substring(0, 3 + i))
+                        .forEach(phoneFirstPart::add);
+                });
+
+        // 2nd Part of Phone Number
+        IntStream.rangeClosed(0, 1)
+                .forEachOrdered(i -> { allCombos.stream()
+                        .map(s -> s.substring(3 + i, s.length()))
+                        .forEach(phoneSecondPart::add);
+                });
+
+
+        return null;
+    }
+
+
     public static Set<String> check1800(final String str) {
 
         List<String> mixedWordsThree;
@@ -17,38 +43,52 @@ public class Dinglemouse {
         String threeDigits = "";
         String fourDigits = "";
 
-        for(int i = 6; i < 10; i++) fourLetters += str.charAt(i);
-        for(int j = 11; j < str.length(); j++) threeLetters += str.charAt(j);
+        // Setup up variables for 4 and 3 word inputs
+        if (str.charAt(10) == '-') {
+            for (int i = 6; i < 10; i++) fourLetters += str.charAt(i);
+            for (int j = 11; j < str.length(); j++) threeLetters += str.charAt(j);
+        } else {
+            for (int i = 6; i < 9; i++) fourLetters += str.charAt(i);
+            for (int j = 10; j < str.length(); j++) threeLetters += str.charAt(j);
+        }
+
 
         threeDigits = convertToDigitis(threeLetters);
         fourDigits = convertToDigitis(fourLetters);
 
+        // Find all combinations of words
         mixedWordsThree = letterCombinations(threeDigits);
-
         mixedWordsFour = (letterCombinations(fourDigits));
 
-        for(String word: mixedWordsFour){
-            for(String approvedWords: PRELOADEDWORDS()){
-                if(approvedWords.equals(word)) approvedFour.add("1-800-" + approvedWords);
-            }
-        }
+        // Build String for approved 4 letter words
+        mixedWordsFour.forEach(word -> Arrays.stream(PRELOADEDWORDS())
+                .filter(approvedWords -> approvedWords.equals(word))
+                .map(approvedWords -> "1-800-" + approvedWords)
+                .forEachOrdered(approvedFour::add));
 
-        for(String word: mixedWordsThree){
-            for(String approvedWords: PRELOADEDWORDS()){
-                if(approvedWords.equals(word)) approvedThree.add("-"+ approvedWords);
-            }
-        }
+        // Build String for approved 3 letter words
+        mixedWordsThree.forEach(word -> Arrays.stream(PRELOADEDWORDS())
+                .filter(approvedWords -> approvedWords.equals(word))
+                .map(approvedWords -> "-" + approvedWords)
+                .forEachOrdered(approvedThree::add));
 
-        for(String wordFour: approvedFour){
-            for(String wordThree: approvedThree){
-                result.add(wordFour + wordThree);
-            }
-        }
+        // Concatinate results
+        approvedFour.forEach(wordFour -> approvedThree.stream()
+                .map(wordThree -> wordFour + wordThree)
+                .forEach(result::add));
 
         return result;
     }
 
-    public static Set<String> checkNumber(int n){
+    private static String lettersOnly(String str) {
+        return IntStream.range(6, str.length())
+                .filter(i -> str.charAt(i) != '-')
+                .mapToObj(i -> String.valueOf(str.charAt(i)))
+                .collect(Collectors.joining());
+
+    }
+
+    public static Set<String> checkNumber(int n) {
 
         final Map<String, Integer> CODE = new HashMap<>();
         CODE.put("A", 2);
@@ -57,7 +97,7 @@ public class Dinglemouse {
 
         HashSet<String> matching = new HashSet<>();
 
-        if (!CODE.containsKey("")){
+        if (!CODE.containsKey("")) {
             matching.add(CODE.keySet().toString());
         }
 
@@ -68,17 +108,17 @@ public class Dinglemouse {
 
     public static List<String> letterCombinations(String digits) {
         HashMap<Character, char[]> phoneNumberMap = new HashMap<Character, char[]>();
-        phoneNumberMap.put('2', new char[]{'a','b','c'});
-        phoneNumberMap.put('3', new char[]{'d','e','f'});
-        phoneNumberMap.put('4', new char[]{'g','h','i'});
-        phoneNumberMap.put('5', new char[]{'j','k','l'});
-        phoneNumberMap.put('6', new char[]{'m','n','o'});
-        phoneNumberMap.put('7', new char[]{'p','q','r','s'});
-        phoneNumberMap.put('8', new char[]{'t','u','v'});
-        phoneNumberMap.put('9', new char[]{'w','x','y','z'});
+        phoneNumberMap.put('2', new char[]{'a', 'b', 'c'});
+        phoneNumberMap.put('3', new char[]{'d', 'e', 'f'});
+        phoneNumberMap.put('4', new char[]{'g', 'h', 'i'});
+        phoneNumberMap.put('5', new char[]{'j', 'k', 'l'});
+        phoneNumberMap.put('6', new char[]{'m', 'n', 'o'});
+        phoneNumberMap.put('7', new char[]{'p', 'q', 'r', 's'});
+        phoneNumberMap.put('8', new char[]{'t', 'u', 'v'});
+        phoneNumberMap.put('9', new char[]{'w', 'x', 'y', 'z'});
 
         List<String> result = new ArrayList<String>();
-        if(digits.equals(""))
+        if (digits.equals(""))
             return result;
 
         helper(result, new StringBuilder(), digits, 0, phoneNumberMap);
@@ -87,8 +127,8 @@ public class Dinglemouse {
 
     }
 
-    public static void helper(List<String> result, StringBuilder sb, String digits, int index, HashMap<Character, char[]> map){
-        if(index>=digits.length()){
+    public static void helper(List<String> result, StringBuilder sb, String digits, int index, HashMap<Character, char[]> map) {
+        if (index >= digits.length()) {
             result.add(sb.toString().toUpperCase());
             return;
         }
@@ -97,14 +137,14 @@ public class Dinglemouse {
         char[] arr = map.get(c);
 
         IntStream.range(0, arr.length)
-            .forEachOrdered(i -> {
-            sb.append(arr[i]);
-            helper(result, sb, digits, index + 1, map);
-            sb.deleteCharAt(sb.length() - 1);
-        });
+                .forEachOrdered(i -> {
+                    sb.append(arr[i]);
+                    helper(result, sb, digits, index + 1, map);
+                    sb.deleteCharAt(sb.length() - 1);
+                });
     }
 
-    public static String convertToDigitis(String words){
+    public static String convertToDigitis(String words) {
         Map<Character, Integer> letterToNumberMap = new HashMap<>();
 
         letterToNumberMap.put('A', 2);
@@ -136,7 +176,7 @@ public class Dinglemouse {
 
         StringBuilder result = new StringBuilder();
 
-        for(int i = 0; i < words.length(); i++){
+        for (int i = 0; i < words.length(); i++) {
             result.append(letterToNumberMap.get(words.charAt(i)));
         }
 
@@ -144,7 +184,7 @@ public class Dinglemouse {
     }
 
 
-    public static String[] PRELOADEDWORDS(){
+    public static String[] PRELOADEDWORDS() {
 
         String s = "ACT\n" +
                 "ADD\n" +
