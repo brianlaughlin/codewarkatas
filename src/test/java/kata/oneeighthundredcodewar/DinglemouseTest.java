@@ -94,7 +94,7 @@ public class DinglemouseTest {
 
         final Set<String> expected = new HashSet<>();
         expected.add("1-800-JOB-LION");
-        assertEquals(expected, show(Dinglemouse.check1800No2("1-800-JOB-LION")));
+        assertEquals(expected, show(Dinglemouse.check1800("1-800-JOB-LION")));
 
     }
 

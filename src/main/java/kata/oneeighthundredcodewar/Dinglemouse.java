@@ -5,11 +5,17 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Dinglemouse {
-    public static Set<String> check1800No2(final String str){
+    public static Set<String> check1800(final String str){
         // New implementation
         Set<String> phoneFirstPart = new HashSet<>();
         Set<String> phoneSecondPart = new HashSet<>();
-        List<String> allCombos = letterCombinations(lettersOnly(str));
+        List<String> allCombos = letterCombinations(
+                convertToDigitis(lettersOnly(str)));
+
+        // Build Final Number collection
+        List<String> phoneFinalFirstPart = new ArrayList<>();
+        List<String> phoneFinalSecondPart = new ArrayList<>();
+        Set<String> result = new HashSet<>();
 
         // 1st Part of Phone Number
         IntStream.rangeClosed(0, 1)
@@ -25,60 +31,29 @@ public class Dinglemouse {
                         .forEach(phoneSecondPart::add);
                 });
 
-
-        return null;
-    }
-
-
-    public static Set<String> check1800(final String str) {
-
-        List<String> mixedWordsThree;
-        List<String> mixedWordsFour;
-        List<String> approvedThree = new ArrayList<>();
-        List<String> approvedFour = new ArrayList<>();
-
-        Set<String> result = new HashSet<>();
-        String threeLetters = "";
-        String fourLetters = "";
-        String threeDigits = "";
-        String fourDigits = "";
-
-        // Setup up variables for 4 and 3 word inputs
-        if (str.charAt(10) == '-') {
-            for (int i = 6; i < 10; i++) fourLetters += str.charAt(i);
-            for (int j = 11; j < str.length(); j++) threeLetters += str.charAt(j);
-        } else {
-            for (int i = 6; i < 9; i++) fourLetters += str.charAt(i);
-            for (int j = 10; j < str.length(); j++) threeLetters += str.charAt(j);
-        }
-
-
-        threeDigits = convertToDigitis(threeLetters);
-        fourDigits = convertToDigitis(fourLetters);
-
-        // Find all combinations of words
-        mixedWordsThree = letterCombinations(threeDigits);
-        mixedWordsFour = (letterCombinations(fourDigits));
-
-        // Build String for approved 4 letter words
-        mixedWordsFour.forEach(word -> Arrays.stream(PRELOADEDWORDS())
+        phoneFirstPart.forEach(word -> Arrays.stream(PRELOADEDWORDS())
                 .filter(approvedWords -> approvedWords.equals(word))
                 .map(approvedWords -> "1-800-" + approvedWords)
-                .forEachOrdered(approvedFour::add));
+                .forEachOrdered(phoneFinalFirstPart::add));
 
-        // Build String for approved 3 letter words
-        mixedWordsThree.forEach(word -> Arrays.stream(PRELOADEDWORDS())
+        phoneSecondPart.forEach(word -> Arrays.stream(PRELOADEDWORDS())
                 .filter(approvedWords -> approvedWords.equals(word))
                 .map(approvedWords -> "-" + approvedWords)
-                .forEachOrdered(approvedThree::add));
+                .forEachOrdered(phoneFinalSecondPart::add));
 
-        // Concatinate results
-        approvedFour.forEach(wordFour -> approvedThree.stream()
-                .map(wordThree -> wordFour + wordThree)
-                .forEach(result::add));
+        // Concatenate results
+        for (String partOne : phoneFinalFirstPart) {
+            for (String partTwo : phoneFinalSecondPart) {
+                if((partOne.length() + partTwo.length()) == 14){
+                    String s = partOne + partTwo;
+                    result.add(s);
+                }
+            }
+        }
 
         return result;
     }
+
 
     private static String lettersOnly(String str) {
         return IntStream.range(6, str.length())
@@ -136,12 +111,11 @@ public class Dinglemouse {
         char c = digits.charAt(index);
         char[] arr = map.get(c);
 
-        IntStream.range(0, arr.length)
-                .forEachOrdered(i -> {
-                    sb.append(arr[i]);
-                    helper(result, sb, digits, index + 1, map);
-                    sb.deleteCharAt(sb.length() - 1);
-                });
+        IntStream.range(0, arr.length).forEachOrdered(i -> {
+            sb.append(arr[i]);
+            helper(result, sb, digits, index + 1, map);
+            sb.deleteCharAt(sb.length() - 1);
+        });
     }
 
     public static String convertToDigitis(String words) {
