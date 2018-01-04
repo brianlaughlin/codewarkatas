@@ -10,7 +10,7 @@ public class DingleSimple {
     static class Preloaded {
         static String[] WORDS = {"CODE", "DAMN", "WAR", "WAS", "YAP", "ZAP", "QWE"};
     }
-    
+
 
         static Set<Character> exclusions = new HashSet<>(Arrays.asList('S', 'V', 'Y', 'Z'));
         static Map<Character, Integer> charNumberMap = IntStream.rangeClosed('A', 'Z').boxed().collect(Collectors.toMap(
