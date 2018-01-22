@@ -27,9 +27,11 @@ public class Canvas {
         drawTopAndBottom();
         drawSides();
         drawTopAndBottom();
+        canvasMatrix[fullLength - 2][height + 1] = "";
+        canvasMatrix[fullLength - 1][height + 1] = "";
 
         theCanvas.setLength(0);
-        for (int row = 0; row < height+2; row++) {
+        for (int row = 0; row < height + 2; row++) {
             for (int col = 0; col < fullLength; col++) {
                 if (canvasMatrix[col][row] == "\\") {
                     theCanvas.append("\n");
@@ -63,18 +65,10 @@ public class Canvas {
     }
 
     private void drawSides() {
-//        for (int h = 0; h < height; h++) {
-//            theCanvas.append("|");
-//            for (int i = 0; i < width; i++) {
-//                theCanvas.append(" ");
-//            }
-//            theCanvas.append("|");
-//            theCanvas.append("\n");
-//        }
 
-        for (int h = 1; h < height + 1; h++){
-            for(int col = 0; col <= fullLength - 2; col++){
-                if(col == 0 || col == (fullLength - 3))
+        for (int h = 1; h < height + 1; h++) {
+            for (int col = 0; col <= fullLength - 2; col++) {
+                if (col == 0 || col == (fullLength - 3))
                     canvasMatrix[col][h] = "|";
                 else
                     canvasMatrix[col][h] = " ";
@@ -89,15 +83,9 @@ public class Canvas {
 
         Boolean isTop = true;
         int row = 0;
-//        if (theCanvas.length() > 1) isTop = false;
-//        theCanvas.append(IntStream.range(0, width + 2)
-//                .mapToObj(i -> "-")
-//                .collect(Collectors.joining()));
-//        if (isTop) theCanvas.append("\n");
 
-        // Using String
-        if(canvasMatrix[0][0] == "-") isTop = false;
-        if(!isTop) row = height + 1;
+        if (canvasMatrix[0][0] == "-") isTop = false;
+        if (!isTop) row = height + 1;
         for (int i = 0; i < fullLength - 2; i++) {
             canvasMatrix[i][row] = "-";
         }
