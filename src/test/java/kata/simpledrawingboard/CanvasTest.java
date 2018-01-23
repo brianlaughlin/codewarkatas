@@ -30,6 +30,5 @@ public class CanvasTest {
     public void emptyCanvas(){
         Canvas c = new Canvas(4, 2);
         assertEquals("------\n|    |\n|    |\n------", c.drawCanvas());
-
     }
 }
