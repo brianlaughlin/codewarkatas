@@ -51,17 +51,11 @@ public class Canvas {
 
         if(canvasMatrix[x][y] == null){
             canvasMatrix[x][y] = String.valueOf(ch);
-            fill(x +1, y + 1, ch);
-            fill(x-1, y-1, ch);
+            fill(x +1, y, ch);
+            fill(x-1, y, ch);
+            fill(x, y+1, ch);
+            fill(x, y-1, ch);
         }
-
-
-//        canvasMatrix[3][3] = "o";
-//        canvasMatrix[3][4] = "o";
-//        canvasMatrix[4][3] = "o";
-//        canvasMatrix[4][4] = "o";
-//        canvasMatrix[5][3] = "o";
-//        canvasMatrix[5][4] = "o";
 
         return this;
     }
