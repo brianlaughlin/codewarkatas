@@ -58,4 +58,29 @@ public class CanvasTest {
 //        assertEquals("---------\n|       |\n| xxxxx |\n| xooox |\n| xooox |\n| xxxxx |\n|       |\n|       |\n---------", c.drawCanvas());
 
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void moreRandom(){
+        Canvas c = new Canvas(38, 34);
+        c.draw(4,16,13,24).draw(12,20,22,12)
+        .draw(18,31,11,32).draw(32,17,2,10)
+        .draw(33, 29, 20, 5).draw(31, 31, 21, 14)
+        .draw(8,10,31,20).draw(3,5,25,28)
+        .draw(27,19,34,30).draw(1,7,25,27)
+        .draw(1,19,31,27).draw(19,27,27,0)
+        .draw(15,18,30,33).draw(6,12,24,6)
+        .draw(28,8,30,10).draw(33,12,5,2)
+        .fill(3,16,'a');
+
+        assertEquals("---------\n|       |\n| xxxxx |\n| xooox |\n| xooox |\n| xxxxx |\n|       |\n|       |\n---------", c.drawCanvas());
+
+    }
+
+
+    @Test
+    public void drawRectangleWithFill() {
+        Canvas c = new Canvas(17, 17);
+        c.draw(1, 1, 5, 4).fill(8,3, 'A');
+        assertEquals("---------\n|    x   |\n| xxxxx |\n| x   x |\n| x   x |\n| xxxxx |\n|       |\n|       |\n---------", c.drawCanvas());
+    }
 }
