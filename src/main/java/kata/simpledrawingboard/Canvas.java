@@ -6,6 +6,7 @@ public class Canvas {
     int width;
     int height;
     int fullLength;
+    Boolean isFill = false;
     StringBuilder theCanvas;
     String[][] canvasMatrix;
 
@@ -25,15 +26,14 @@ public class Canvas {
             drawRectangle(x1, y1, x2, y2);
         }
 
-
         return this;
     }
 
     private void drawRectangle(int x1, int y1, int x2, int y2) {
-        drawVertical(x1, y1, x2 -1);
-        drawVertical(x1, y2+1, x2 -1);
-        drawHorizontal(x1, y1, y2+1);
-        drawHorizontal(x2 -1, y1, y2+1);
+        drawVertical(x1, y1, x2 - 1);
+        drawVertical(x1, y2 + 1, x2 - 1);
+        drawHorizontal(x1, y1, y2 + 1);
+        drawHorizontal(x2 - 1, y1, y2 + 1);
     }
 
     private void drawHorizontal(int x1, int y1, int y2) {
@@ -47,6 +47,22 @@ public class Canvas {
     }
 
     public Canvas fill(int x, int y, char ch) {
+
+
+        if(canvasMatrix[x][y] == null){
+            canvasMatrix[x][y] = String.valueOf(ch);
+            fill(x +1, y + 1, ch);
+            fill(x-1, y-1, ch);
+        }
+
+
+//        canvasMatrix[3][3] = "o";
+//        canvasMatrix[3][4] = "o";
+//        canvasMatrix[4][3] = "o";
+//        canvasMatrix[4][4] = "o";
+//        canvasMatrix[5][3] = "o";
+//        canvasMatrix[5][4] = "o";
+
         return this;
     }
 
@@ -84,7 +100,8 @@ public class Canvas {
             for (int col = 0; col <= fullLength - 2; col++) {
                 if (col == 0 || col == (fullLength - 3))
                     canvasMatrix[col][h] = "|";
-                else if (canvasMatrix[col][h] != "x") canvasMatrix[col][h] = " ";
+                else if (canvasMatrix[col][h] == null)
+                    canvasMatrix[col][h] = " ";
             }
             addReturn(fullLength, h);
         }
