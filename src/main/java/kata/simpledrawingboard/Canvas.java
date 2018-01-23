@@ -17,8 +17,13 @@ public class Canvas {
 
     public Canvas draw(int x1, int y1, int x2, int y2) {
 
-        canvasMatrix[3][0] = "x";
-        canvasMatrix[3][1] = "x";
+        for (int row = x1 + 1; row <= x2 + 1; row++) {
+            canvasMatrix[y1 + 1][row] = "x";
+        }
+        for (int col = y1 + 1; col <= y2 + 1; col++) {
+            canvasMatrix[col][x1 + 1] = "x";
+        }
+
 
         return this;
     }
@@ -61,8 +66,7 @@ public class Canvas {
             for (int col = 0; col <= fullLength - 2; col++) {
                 if (col == 0 || col == (fullLength - 3))
                     canvasMatrix[col][h] = "|";
-                else
-                    canvasMatrix[col][h] = " ";
+                else if (canvasMatrix[col][h] != "x") canvasMatrix[col][h] = " ";
             }
             addReturn(fullLength, h);
         }

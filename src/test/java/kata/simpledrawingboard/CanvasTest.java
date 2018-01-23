@@ -8,7 +8,7 @@ public class CanvasTest {
     @Test
     public void drawLines() {
         Canvas c = new Canvas(5, 5);
-        c.draw(0, 2, 4, 2); // .draw(2, 0, 2, 4);
+        c.draw(0, 2, 4, 2).draw(2, 0, 2, 4);
         assertEquals("-------\n|  x  |\n|  x  |\n|xxxxx|\n|  x  |\n|  x  |\n-------", c.drawCanvas());
     }
 
