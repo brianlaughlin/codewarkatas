@@ -16,6 +16,10 @@ public class Canvas {
     }
 
     public Canvas draw(int x1, int y1, int x2, int y2) {
+
+        canvasMatrix[3][0] = "x";
+        canvasMatrix[3][1] = "x";
+
         return this;
     }
 
@@ -24,12 +28,16 @@ public class Canvas {
     }
 
     public String drawCanvas() {
-        drawTopAndBottom();
-        drawSides();
-        drawTopAndBottom();
+        drawBoarders();
         canvasMatrix[fullLength - 2][height + 1] = "";
         canvasMatrix[fullLength - 1][height + 1] = "";
 
+        canvasToString();
+
+        return theCanvas.toString();
+    }
+
+    private void canvasToString() {
         theCanvas.setLength(0);
         for (int row = 0; row < height + 2; row++) {
             for (int col = 0; col < fullLength; col++) {
@@ -39,24 +47,8 @@ public class Canvas {
                 } else theCanvas.append(canvasMatrix[col][row]);
             }
         }
-
-        return theCanvas.toString();
     }
 
-
-    public String drawCanvasPassDrawLines() {
-        drawBoarders();
-
-
-        // 0 , 2 = 'x'
-        theCanvas.replace(11, 12, "x");
-        theCanvas.replace(19, 20, "x");
-        theCanvas.replace(25, 30, "xxxxx");
-        theCanvas.replace(35, 36, "x");
-        theCanvas.replace(43, 44, "x");
-
-        return theCanvas.toString();
-    }
 
     private void drawBoarders() {
         drawTopAndBottom();
@@ -65,7 +57,6 @@ public class Canvas {
     }
 
     private void drawSides() {
-
         for (int h = 1; h < height + 1; h++) {
             for (int col = 0; col <= fullLength - 2; col++) {
                 if (col == 0 || col == (fullLength - 3))
@@ -73,10 +64,14 @@ public class Canvas {
                 else
                     canvasMatrix[col][h] = " ";
             }
-            canvasMatrix[fullLength - 2][h] = "\\";
-            canvasMatrix[fullLength - 1][h] = "n";
+            addReturn(fullLength, h);
         }
 
+    }
+
+    private void addReturn(int fullLength, int h) {
+        canvasMatrix[fullLength - 2][h] = "\\";
+        canvasMatrix[fullLength - 1][h] = "n";
     }
 
     private void drawTopAndBottom() {
@@ -90,8 +85,7 @@ public class Canvas {
             canvasMatrix[i][row] = "-";
         }
         if (isTop) {
-            canvasMatrix[fullLength - 2][0] = "\\";
-            canvasMatrix[fullLength - 1][0] = "n";
+            addReturn(fullLength, 0);
         }
 
     }
