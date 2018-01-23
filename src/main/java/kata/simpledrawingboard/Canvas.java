@@ -19,14 +19,31 @@ public class Canvas {
 
     public Canvas draw(int x1, int y1, int x2, int y2) {
 
-        if (y1 == y2) IntStream.rangeClosed(x1 + 1, x2 + 1)
-                .forEachOrdered(row -> canvasMatrix[y1 + 1][row] = "x");
-
-        if (x1 == x2) IntStream.rangeClosed(y1 + 1, y2 + 1)
-                .forEachOrdered(col -> canvasMatrix[col][x1 + 1] = "x");
+        if (y1 == y2) drawVertical(x1, y1, x2);
+        else if (x1 == x2) drawHorizontal(x1, y1, y2);
+        else {
+            drawRectangle(x1, y1, x2, y2);
+        }
 
 
         return this;
+    }
+
+    private void drawRectangle(int x1, int y1, int x2, int y2) {
+        drawVertical(x1, y1, x2 -1);
+        drawVertical(x1, y2+1, x2 -1);
+        drawHorizontal(x1, y1, y2+1);
+        drawHorizontal(x2 -1, y1, y2+1);
+    }
+
+    private void drawHorizontal(int x1, int y1, int y2) {
+        IntStream.rangeClosed(y1 + 1, y2 + 1)
+                .forEachOrdered(col -> canvasMatrix[col][x1 + 1] = "x");
+    }
+
+    private void drawVertical(int x1, int y1, int x2) {
+        IntStream.rangeClosed(x1 + 1, x2 + 1)
+                .forEachOrdered(row -> canvasMatrix[y1 + 1][row] = "x");
     }
 
     public Canvas fill(int x, int y, char ch) {
