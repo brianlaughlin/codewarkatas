@@ -6,11 +6,12 @@ public class Canvas {
     int width;
     int height;
     int fullLength;
-    Boolean isFill = false;
     StringBuilder theCanvas;
     String[][] canvasMatrix;
 
     public Canvas(int width, int height) {
+        if (width < 1 || height < 1) throw new IllegalArgumentException();
+
         this.width = width;
         this.height = height;
         this.fullLength = width + 4; // -- + \n
@@ -19,6 +20,12 @@ public class Canvas {
     }
 
     public Canvas draw(int x1, int y1, int x2, int y2) {
+
+        if(x1 > width || x1 < 0) throw new IllegalArgumentException();
+        if(x2 > width || x2 < 0) throw new IllegalArgumentException();
+        if(y1 > height || y1 < 0) throw new IllegalArgumentException();
+        if(y2 > height || y2 < 0) throw new IllegalArgumentException();
+
 
         if (y1 == y2) drawVertical(x1, y1, x2);
         else if (x1 == x2) drawHorizontal(x1, y1, y2);
@@ -37,17 +44,26 @@ public class Canvas {
     }
 
     private void drawHorizontal(int x1, int y1, int y2) {
-        IntStream.rangeClosed(y1 + 1, y2 + 1)
-                .forEachOrdered(col -> canvasMatrix[col][x1 + 1] = "x");
+        try {
+            IntStream.rangeClosed(y1 + 1, y2 + 1)
+                    .forEachOrdered(col -> canvasMatrix[col][x1 + 1] = "x");
+        } catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Index out of bounds");
+        }
     }
 
     private void drawVertical(int x1, int y1, int x2) {
-        IntStream.rangeClosed(x1 + 1, x2 + 1)
-                .forEachOrdered(row -> canvasMatrix[y1 + 1][row] = "x");
+        try {
+            IntStream.rangeClosed(x1 + 1, x2 + 1)
+                    .forEachOrdered(row -> canvasMatrix[y1 + 1][row] = "x");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Index out of bounds");
+        }
     }
 
     public Canvas fill(int x, int y, char ch) {
-
+        if(x < 0 || x > width) throw new IllegalArgumentException();
+        if(y < 0 || y > height) throw new IllegalArgumentException();
 
         if(canvasMatrix[x][y] == null){
             canvasMatrix[x][y] = String.valueOf(ch);

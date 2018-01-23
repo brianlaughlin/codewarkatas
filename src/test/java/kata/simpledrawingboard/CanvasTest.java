@@ -31,4 +31,31 @@ public class CanvasTest {
         Canvas c = new Canvas(4, 2);
         assertEquals("------\n|    |\n|    |\n------", c.drawCanvas());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void invalidCanvasHeight(){
+        Canvas c = new Canvas(63, -10);
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void drawOutOfBoundsWH(){
+        Canvas c = new Canvas(80, 80);
+        c.draw(160,170,160,170);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void fillOutOfBoundsH(){
+        Canvas c = new Canvas(30, 40);
+        c.fill(10,200, 'o');
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void mixedDrawing(){
+        Canvas c = new Canvas(20, 4);
+        c.draw(0,1, 5,1);
+
+//        assertEquals("---------\n|       |\n| xxxxx |\n| xooox |\n| xooox |\n| xxxxx |\n|       |\n|       |\n---------", c.drawCanvas());
+
+    }
 }
