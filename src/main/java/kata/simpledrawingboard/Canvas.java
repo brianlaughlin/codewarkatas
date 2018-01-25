@@ -1,5 +1,6 @@
 package kata.simpledrawingboard;
 
+import javax.management.RuntimeErrorException;
 import java.util.stream.IntStream;
 
 public class Canvas {
@@ -19,12 +20,13 @@ public class Canvas {
         canvasMatrix = new String[fullLength][height + 2];
     }
 
-    public Canvas draw(int x1, int y1, int x2, int y2) {
+    public Canvas draw(int x1, int y1, int x2, int y2) throws RuntimeErrorException{
+        System.out.println("x1=" + x1 + " y1=" + y1 + " x2=" + x2 + " y2=" + y2); // REMOVE USED FOR DEBUG
 
-        if(x1 > width || x1 < 0) throw new IllegalArgumentException();
-        if(x2 > width || x2 < 0) throw new IllegalArgumentException();
-        if(y1 > height || y1 < 0) throw new IllegalArgumentException();
-        if(y2 > height || y2 < 0) throw new IllegalArgumentException();
+        if (x1 > height || x1 < 0) throw new IllegalArgumentException();
+        if (x2 > height || x2 < 0) throw new IllegalArgumentException();
+        if (y1 > width || y1 < 0) throw new IllegalArgumentException();
+        if (y2 > width || y2 < 0) throw new IllegalArgumentException();
 
 
         if (y1 == y2) drawVertical(x1, y1, x2);
@@ -47,7 +49,7 @@ public class Canvas {
         try {
             IntStream.rangeClosed(y1 + 1, y2 + 1)
                     .forEachOrdered(col -> canvasMatrix[col][x1 + 1] = "x");
-        } catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Index out of bounds");
         }
     }
@@ -62,15 +64,22 @@ public class Canvas {
     }
 
     public Canvas fill(int x, int y, char ch) {
-        if(x < 0 || x > width) throw new IllegalArgumentException();
-        if(y < 0 || y > height) throw new IllegalArgumentException();
+        /*
+        For debugging
+         */
+        System.out.println("x = " + x + " y = " + y + " ch = " + ch);
+        System.out.println("width = " + width + " height = " + height);
+        // end Delete above on final submission.
 
-        if(canvasMatrix[x][y] == null){
+        if (x < 0 || x > height) throw new IllegalArgumentException();
+        if (y < 0 || y > width) throw new IllegalArgumentException();
+
+        if (canvasMatrix[x][y] == null) {
             canvasMatrix[x][y] = String.valueOf(ch);
-            fill(x +1, y, ch);
-            fill(x-1, y, ch);
-            fill(x, y+1, ch);
-            fill(x, y-1, ch);
+            fill(x + 1, y, ch);
+            fill(x - 1, y, ch);
+            fill(x, y + 1, ch);
+            fill(x, y - 1, ch);
         }
 
         return this;

@@ -50,10 +50,17 @@ public class CanvasTest {
         c.fill(10,200, 'o');
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void mixedDrawing(){
         Canvas c = new Canvas(20, 4);
         c.draw(0,1, 5,1);
+
+                /*
+                .draw(5,2,5,3)
+                   .draw(13,0,17,2).fill(9,2,'o');
+                 */
+
+        System.out.println(c.drawCanvas());
 
 //        assertEquals("---------\n|       |\n| xxxxx |\n| xooox |\n| xooox |\n| xxxxx |\n|       |\n|       |\n---------", c.drawCanvas());
 
@@ -77,7 +84,7 @@ public class CanvasTest {
     }
 
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void drawRectangleWithFill() {
         Canvas c = new Canvas(17, 17);
         c.draw(1, 1, 5, 4).fill(8,3, 'A');
