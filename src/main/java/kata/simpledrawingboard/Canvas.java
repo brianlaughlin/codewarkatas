@@ -1,6 +1,5 @@
 package kata.simpledrawingboard;
 
-import javax.management.RuntimeErrorException;
 import java.util.stream.IntStream;
 
 public class Canvas {
@@ -20,7 +19,7 @@ public class Canvas {
         canvasMatrix = new String[fullLength][height + 2];
     }
 
-    public Canvas draw(int x1, int y1, int x2, int y2) throws RuntimeErrorException{
+    public Canvas draw(int x1, int y1, int x2, int y2) {
         System.out.println("x1=" + x1 + " y1=" + y1 + " x2=" + x2 + " y2=" + y2); // REMOVE USED FOR DEBUG
 
         if (x1 > height || x1 < 0) throw new IllegalArgumentException();
@@ -60,6 +59,10 @@ public class Canvas {
                     .forEachOrdered(row -> canvasMatrix[y1 + 1][row] = "x");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Index out of bounds");
+            throw new ArrayIndexOutOfBoundsException();
+        } catch (IllegalArgumentException ilEx){
+            System.out.println(ilEx.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
