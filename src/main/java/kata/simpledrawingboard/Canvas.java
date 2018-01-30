@@ -3,18 +3,18 @@ package kata.simpledrawingboard;
 import java.util.stream.IntStream;
 
 public class Canvas {
-    int width;
-    int height;
-    int fullLength;
-    StringBuilder theCanvas;
-    String[][] canvasMatrix;
+    private int width;
+    private int height;
+    private int fullLength;
+    private StringBuilder theCanvas;
+    private String[][] canvasMatrix;
 
     public Canvas(int width, int height) {
         if (width < 1 || height < 1) throw new IllegalArgumentException();
 
         this.width = width;
         this.height = height;
-        this.fullLength = width + 4; // -- + \n
+        this.fullLength = width + 4;
         theCanvas = new StringBuilder();
         canvasMatrix = new String[fullLength][height + 2];
     }
@@ -26,7 +26,6 @@ public class Canvas {
         if (x2 > height || x2 < 0) throw new IllegalArgumentException();
         if (y1 > width || y1 < 0) throw new IllegalArgumentException();
         if (y2 > width || y2 < 0) throw new IllegalArgumentException();
-
 
         if (y1 == y2) drawVertical(x1, y1, x2);
         else if (x1 == x2) drawHorizontal(x1, y1, y2);
