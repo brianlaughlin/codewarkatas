@@ -9,7 +9,7 @@ public class Canvas {
     private StringBuilder theCanvas;
     private String[][] canvasMatrix;
 
-    public Canvas(int width, int height) {
+    public Canvas(int width, int height) throws IllegalArgumentException {
         if (width < 1 || height < 1) throw new IllegalArgumentException();
 
         this.width = width;
@@ -19,8 +19,7 @@ public class Canvas {
         canvasMatrix = new String[fullLength][height + 2];
     }
 
-    public Canvas draw(int x1, int y1, int x2, int y2) {
-        System.out.println("x1=" + x1 + " y1=" + y1 + " x2=" + x2 + " y2=" + y2); // REMOVE USED FOR DEBUG
+    public Canvas draw(int x1, int y1, int x2, int y2) throws IllegalArgumentException {
 
         if (x1 > height || x1 < 0) throw new IllegalArgumentException();
         if (x2 > height || x2 < 0) throw new IllegalArgumentException();
@@ -43,35 +42,22 @@ public class Canvas {
         drawHorizontal(x2 - 1, y1, y2 + 1);
     }
 
-    private void drawHorizontal(int x1, int y1, int y2) {
-        try {
-            IntStream.rangeClosed(y1 + 1, y2 + 1)
-                    .forEachOrdered(col -> canvasMatrix[col][x1 + 1] = "x");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Index out of bounds");
-        }
+    private void drawHorizontal(int x1, int y1, int y2) throws ArrayIndexOutOfBoundsException {
+        IntStream.rangeClosed(y1 + 1, y2 + 1)
+                .forEachOrdered(col -> canvasMatrix[col][x1 + 1] = "x");
     }
 
-    private void drawVertical(int x1, int y1, int x2) {
+    private void drawVertical(int x1, int y1, int x2) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
         try {
             IntStream.rangeClosed(x1 + 1, x2 + 1)
                     .forEachOrdered(row -> canvasMatrix[y1 + 1][row] = "x");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Index out of bounds");
             throw new ArrayIndexOutOfBoundsException();
-        } catch (IllegalArgumentException ilEx){
-            System.out.println(ilEx.getMessage());
-            throw new IllegalArgumentException();
         }
     }
 
-    public Canvas fill(int x, int y, char ch) {
-        /*
-        For debugging
-         */
-        System.out.println("x = " + x + " y = " + y + " ch = " + ch);
-        System.out.println("width = " + width + " height = " + height);
-        // end Delete above on final submission.
+    public Canvas fill(int x, int y, char ch) throws IllegalArgumentException {
 
         if (x < 0 || x > height) throw new IllegalArgumentException();
         if (y < 0 || y > width) throw new IllegalArgumentException();
@@ -147,6 +133,5 @@ public class Canvas {
         if (isTop) {
             addReturn(fullLength, 0);
         }
-
     }
 }

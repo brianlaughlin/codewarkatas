@@ -53,12 +53,8 @@ public class CanvasTest {
     @Test(expected = IllegalArgumentException.class)
     public void mixedDrawing(){
         Canvas c = new Canvas(20, 4);
-        c.draw(0,1, 5,1);
-
-                /*
-                .draw(5,2,5,3)
+        c.draw(0,1, 5,1).draw(5,2,5,3)
                    .draw(13,0,17,2).fill(9,2,'o');
-                 */
 
         System.out.println(c.drawCanvas());
 
