@@ -8,11 +8,12 @@ public class UrlShortener {
 
         int n = i;
         StringBuilder shortUrl = new StringBuilder();
-        while (n != 0){
-
-            shortUrl.append(mapBase.charAt(n % 62 - 1));
+        if (n == 0) shortUrl.append("a");
+        while (n > 0) {
+            shortUrl.append(mapBase.charAt(n % 62));
             n = n / 62;
         }
+
         return shortUrl.toString();
     }
 }
