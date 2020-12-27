@@ -12,4 +12,9 @@ public class DecToolsTest {
         assertEquals(5,  DecTools.Digits(12345l));
         assertEquals(10, DecTools.Digits(9876543210l));
     }
+
+    @Test
+    public void DigitsByAddingString(){
+        assertEquals(4, DecTools.DigitsByAddingString(2233L));
+    }
 }
